@@ -1,0 +1,21 @@
+{
+  "name": "backend",
+  "version": "1.0.0",
+  "description": "tudent Management System",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon server.js"
+    
+  },
+  "author": "sandaru",
+  "license": "ISC",
+  "dependencies": {
+    "colors": "^1.4.0",
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.7",
+    "expres": "^0.0.5",
+    "express": "^4.21.2",
+    "mongoose": "^8.11.0",
+    "nodemon": "^3.1.9"
+  }
+}
