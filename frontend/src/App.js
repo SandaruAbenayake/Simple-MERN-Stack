@@ -1,15 +1,22 @@
 
 import './App.css';
-import CounterClass from './components/Counterclass';
-import CounterFunction from './components/CounterFunction';
+
+import Header from './components/Header';
+import AddStudent from './components/AddStudent';
+import {BrowserRouter as Router,Route} from "react-router-dom"
+
 
 function App() {
   return (
-    <div className="App">
-      <h1> Hello React</h1>
-      <CounterClass/>
-      <CounterFunction/>
+    <Router>
+    <div>
+     <Header/>
+
+<Route path="/add" extract component={AddStudent}/>
+
+     <AddStudent/>
     </div>
+    </Router>
   );
 }
 
