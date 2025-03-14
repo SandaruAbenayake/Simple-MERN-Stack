@@ -1,10 +1,10 @@
 import React, { useState } from "react";
 
-export default function AddStudent() {
+export default function addStudent(container) {
   return (
     <div className="container">
       <form>
-        <div class="form-group">
+        <div class="form-group" >
           <label for="name">Student Name</label>
           <input
             type="text"
