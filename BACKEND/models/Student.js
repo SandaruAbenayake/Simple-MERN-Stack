@@ -15,7 +15,8 @@ const studentSchema = new Schema ({
    gender:{
         type:String,
         required: true
-    }
+    },
+    status:{type:Boolean, required:false, default:true}
 })
 
 const Student =  mongoose.model("Student",studentSchema);

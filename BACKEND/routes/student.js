@@ -2,9 +2,9 @@ const router = require("express").Router();
 let Student = require('../models/Student');
 
 router.route("/add").post((req, res) => {
-    const name = req.body.name;
-    const age = Number(req.body.age);
-    const gender = req.body.gender;
+    
+   
+    const {name,age,gender} = req.body;
 
     const newStudent = new Student({
         name,
@@ -34,12 +34,12 @@ router.route("/").get((req, res) => {
 });
 
 router.route("/update/:id").put(async (req, res) => {
-    let userId = req.params.id;
+    let {id} = req.params
     const { name, age, gender } = req.body;
 
     const updateStudent = { name, age, gender };
 
-    await Student.findByIdAndUpdate(userId, updateStudent)
+    await Student.findByIdAndUpdate(id, updateStudent)
         .then(() => {
             res.status(200).send({ status: "User Updated" });
         })
