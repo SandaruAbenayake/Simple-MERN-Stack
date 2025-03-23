@@ -5,7 +5,8 @@ import Swal from 'sweetalert2';
 function Home() {
 
     const [students, setStudents] = useState([])
-    const [editData, setEditData] = useState({});
+    const [editData, setEditData] = useState({})
+    const [gender, setGender] = useState("");
 
             // Fetch all students
     const getAllStudents = async()=>{
@@ -74,7 +75,7 @@ function Home() {
                     Swal.fire("Deleted!", "Student has been removed.", "success");
                 } catch (error) {
                     Swal.fire("Error!", "Failed to delete student.", "error");
-                    
+
                 }
             }
         });
