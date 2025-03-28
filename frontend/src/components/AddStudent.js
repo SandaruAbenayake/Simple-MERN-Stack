@@ -8,28 +8,22 @@ export default function AddStudent() {
   const [gender, setGender] = useState("");
 
   const submitStudent = async (e) => {
-    e.preventDefault(); // Prevents the page from refreshing
+    e.preventDefault();
 
-    const newStudent = {
-      name,
-      name,
-      age: age,
-      gender: gender,
-    };
-
-    await axios.post("http://localhost:5002/student/add", newStudent);
-
-    setName("");
-    setAge("");
-    setGender("");
-
-    Swal.fire({
-      title: "Success",
-      icon: "success",
-      draggable: true,
-    });
+    const newStudent = { name, age, gender };
 
     try {
+      await axios.post("http://localhost:5002/student/add", newStudent);
+
+      setName("");
+      setAge("");
+      setGender("");
+
+      Swal.fire({
+        title: "Student Added Successfully!",
+        icon: "success",
+        draggable: true,
+      });
     } catch (error) {
       console.error("Error adding student:", error);
       Swal.fire({
@@ -41,13 +35,14 @@ export default function AddStudent() {
   };
 
   return (
-    <div className="container">
-      <form>
-        <div class="form-group">
-          <label for="name">Student Name</label>
+    <div className="add-student-container">
+      <h2>Add New Student</h2>
+      <form className="add-student-form" onSubmit={submitStudent}>
+        <div className="form-group">
+          <label htmlFor="name">Student Name</label>
           <input
             type="text"
-            class="form-control"
+            className="form-control"
             id="name"
             value={name}
             placeholder="Enter Student Name"
@@ -55,11 +50,11 @@ export default function AddStudent() {
           />
         </div>
 
-        <div class="form-group">
-          <label for="age">Student Age</label>
+        <div className="form-group">
+          <label htmlFor="age">Student Age</label>
           <input
-            type="text"
-            class="form-control"
+            type="number"
+            className="form-control"
             id="age"
             value={age}
             placeholder="Enter Student Age"
@@ -67,20 +62,20 @@ export default function AddStudent() {
           />
         </div>
 
-        <div class="form-group">
-          <label for="gender">Student Gender</label>
+        <div className="form-group">
+          <label htmlFor="gender">Student Gender</label>
           <select
             className="form-control"
             value={gender}
             onChange={(e) => setGender(e.target.value)}
           >
-            <option value="">Select Gender</option> {/* Empty default option */}
+            <option value="">Select Gender</option>
             <option value="Male">Male</option>
             <option value="Female">Female</option>
           </select>
         </div>
 
-        <button type="submit" class="btn btn-primary" onClick={submitStudent}>
+        <button type="submit" className="submit-btn">
           Submit
         </button>
       </form>
