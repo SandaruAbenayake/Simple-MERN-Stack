@@ -5,7 +5,7 @@ import Swal from "sweetalert2";
 function Home() {
   const [students, setStudents] = useState([]);
   const [editData, setEditData] = useState({});
-  const [gender, setGender] = useState("");
+  const [gender, setGender] = useState({});
 
   // Fetch all students
   const getAllStudents = async () => {
