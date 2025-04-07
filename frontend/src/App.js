@@ -1,6 +1,5 @@
 import "./App.css";
-
-import Header from "./components/Header";
+import Header from "./components/Header.jsx";
 import AddStudent from "./components/AddStudent";
 import {  Route, Routes } from "react-router-dom";
 import Home from "./pages/Home";
@@ -11,7 +10,7 @@ function App() {
         <Header/>
         
         <Routes>
-        <Route path="/" element={<Home/>} />
+        <Route path="/" element={<Home age={'sdas'} name={'dfsdf'}/>} />
           <Route path="/add" element={<AddStudent/>} />
         </Routes>
         
@@ -21,3 +20,4 @@ function App() {
 }
 
 export default App;
+ 
