@@ -9,7 +9,7 @@ import { styled } from "@mui/material/styles";
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from "chart.js";
 import { Pie } from "react-chartjs-2";
 const Item = styled(Paper)(({ theme }) => ({
-  backgroundColor: "#fff",
+  backgroundColor: "#ff",
   ...theme.typography.body2,
   padding: theme.spacing(1),
   textAlign: "center",
@@ -27,9 +27,9 @@ function Home() {
   const [maleCount, setMaleCount] = useState([]);
   const [femalCount, setFemaleCount] = useState([]);
   const [data, setData] = useState(null);
-  const[childCount,setChildCount]=useState(0);
-  const[adultsCount,setAdultCount]=useState(0);
-  const[groups,setAgeGroups]=useState(0);
+  const [childCount, setChildCount] = useState(0);
+  const [adultsCount, setAdultCount] = useState(0);
+  const [groups, setAgeGroups] = useState(0);
 
   // Fetch all students
   const getAllStudents = async () => {
@@ -84,20 +84,26 @@ function Home() {
       setAdultCount(adults);
 
       const data = {
-        labels: ["Male", "Female"],
+        labels: ["Male", "Female"], // Categories for your pie chart
         datasets: [
           {
-            label: "# of Votes",
-            data: [males, females],
+            label: "Number of Student", // Tooltip label
+            data: [males, females], // Dynamic data: number of males and females
             backgroundColor: [
-              "rgba(240, 43, 86, 0.2)",
-              "rgba(28, 151, 233, 0.2)",
+              "rgba(240, 43, 86, 0.2)", // Light red for Male
+              "rgba(28, 151, 233, 0.2)", // Light blue for Female
             ],
-            borderColor: ["rgba(255, 99, 132, 1)", "rgba(54, 162, 235, 1)"],
-            borderWidth: 1,
+
+            borderColor: [
+              "rgb(14, 13, 13)", // Stronger red border
+              "rgb(10, 10, 10)", // Stronger blue border
+            ],
+            borderWidth: 1, // Border thickness
+            hoverOffset: 20,
           },
         ],
       };
+
       setData(data);
     }
   }, [students]);
@@ -154,20 +160,50 @@ function Home() {
   };
 
   return (
-    <Box sx={{ flexGrow: 1 }}>
+    <Box sx={{ flexGrow: 1, padding: "20px", backgroundColor: "#f4f7fb" }}>
       <Grid container spacing={2}>
-        <Grid size={6}>
-          <Item>{data && <Pie data={data} />}</Item>
+        {/* Pie chart section */}
+        <Grid item xs={10} md={5}>
+          <Item
+            sx={{
+              display: "FLEX",
+              justifyContent: "center",
+              alignItems: "center",
+              padding: "10px",
+            }}
+          >
+            {data && <Pie data={data} />}
+          </Item>
         </Grid>
+        <Grid>
 
-        <Grid item xs={12} md={6}>
-          <Item>
-            <h4>Student Type</h4>
+        </Grid>
+        
+        
+
+
+        {/* Student details section */}
+        <Grid item xs={12} md={8}>
+          <Item
+            sx={{
+              padding: "20px",
+              display: "flex",
+              flexDirection: "column",
+              alignItems: "flex-start",
+              textAlign: "left",
+            }}
+          >
+            <h4
+              style={{ marginBottom: "20px", color: "#333", fontSize: "24px" }}
+            >
+              Student Type
+            </h4>
             <ul
               style={{
                 textAlign: "left",
                 listStyleType: "disc",
                 paddingLeft: "20px",
+                color: "#555",
               }}
             >
               <li>Child (below 18): {childCount}</li>
@@ -232,8 +268,6 @@ function Home() {
           </Item>
         </Grid>
       </Grid>
-
-      
     </Box>
   );
 }
